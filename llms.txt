@@ -1,0 +1,31 @@
+# Exam Strategy Studio
+
+> Local-first exam review log. Record a practice question, the marks you obtained, and the marks available, then review a private score sheet. Your paper stays on your computer.
+
+Exam Strategy Studio is a small Python and Flask app by Ryan Editraj. It is for students and anyone reviewing past papers, mock exams, or class tests. It is not an account-based service, and it does not upload questions.
+
+## Start here
+
+- [Source code](https://github.com/ryaneditraj/Exam): the project repository
+- [Author on GitHub](https://github.com/ryaneditraj): Ryan Editraj
+- [Author on Instagram](https://instagram.com/ryaneditraj): Ryan Editraj
+
+## What it does
+
+- Stores each question with marks obtained and total marks in a JSON file
+- Shows a percentage for each question and a running total in the browser
+- Keeps the Flask debugger off unless FLASK_DEBUG=1
+- Sends noindex by default so private questions are not published to search engines
+- Serves this file at /llms.txt when the app is running
+
+## Questions people ask
+
+- What is Exam Strategy Studio? A local exam review log for practice questions and marks.
+- Does it upload my questions? No. Results stay in data/results.json on the machine running the app.
+- How do I run it? Use Python 3.9 or newer, install requirements.txt, run python app.py, and open http://127.0.0.1:5001
+- How do I report a vulnerability? Use GitHub private vulnerability reporting: https://github.com/ryaneditraj/Exam/security/advisories/new
+
+## Optional
+
+- [License](https://github.com/ryaneditraj/Exam/blob/main/LICENSE): MIT
+- [Security policy](https://github.com/ryaneditraj/Exam/blob/main/SECURITY.md): how to report vulnerabilities

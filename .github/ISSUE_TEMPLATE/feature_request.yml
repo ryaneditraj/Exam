@@ -1,0 +1,24 @@
+name: Feature request
+description: A change that would make the score sheet more useful
+title: "[Feature] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is missing?
+      description: Which part of reviewing an exam paper is awkward today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What should the app do instead?
+    validations:
+      required: true
+  - type: checkboxes
+    id: fit
+    attributes:
+      label: Scope check
+      options:
+        - label: This still keeps questions on the user's computer, with no account and no uploaded paper.
+          required: false

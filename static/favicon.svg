@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Exam Strategy Studio">
+  <rect width="32" height="32" rx="7" fill="#F3EBDD"/>
+  <rect width="6" height="32" fill="#8F1A12"/>
+  <path d="M12 9h12M12 16h9M12 23h12" stroke="#1D1A16" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

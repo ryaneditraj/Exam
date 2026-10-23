@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="wrap">
+  <header class="mast">
+    <p class="kicker">Local exam review log</p>
+    <div class="mast-row">
+      <div>
+        <h1>Exam Strategy Studio</h1>
+        <p class="dek">Log the question you missed, the marks you got, and the marks still on the table.</p>
+      </div>
+      <p class="pill">On this computer</p>
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+    <p class="banner ok" role="status">{{ message }}</p>
+    {% endfor %}
+  {% endwith %}
+  {% if load_error %}
+  <p class="banner error" role="alert">{{ load_error }}</p>
+  {% endif %}
+
+  <main class="layout">
+    <section class="card form-card" aria-labelledby="add-heading">
+      <h2 id="add-heading">Add a question</h2>
+      <p class="lede">Write the question as it appeared on the paper, then the marks you obtained and the marks it was worth.</p>
+      {% if errors %}
+      <div class="banner error" role="alert">
+        {% for error in errors %}<p>{{ error }}</p>{% endfor %}
+      </div>
+      {% endif %}
+      <form action="{{ url_for('add_question') }}" method="post" autocomplete="off">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label for="question_text">Question</label>
+        <textarea id="question_text" name="question_text" rows="5" maxlength="2000" required>{{ form.question_text }}</textarea>
+        <div class="marks-row">
+          <div>
+            <label for="marks_obtained">Marks obtained</label>
+            <input id="marks_obtained" name="marks_obtained" type="number" inputmode="decimal" min="0" max="1000" step="0.01" value="{{ form.marks_obtained }}" required>
+          </div>
+          <div>
+            <label for="total_marks">Total marks</label>
+            <input id="total_marks" name="total_marks" type="number" inputmode="decimal" min="0" max="1000" step="0.01" value="{{ form.total_marks }}" required>
+          </div>
+        </div>
+        <button type="submit">Save question</button>
+      </form>
+      <p class="fine">Nothing is uploaded. The score sheet is a JSON file on this computer.</p>
+    </section>
+
+    <section class="card sheet" id="score-sheet" aria-labelledby="sheet-heading">
+      <div class="sheet-head">
+        <div>
+          <h2 id="sheet-heading">Score sheet</h2>
+          {% if summary %}
+          <p class="summary-line">{{ summary.questions }} {% if summary.questions == 1 %}question{% else %}questions{% endif %} · {{ summary.obtained_label }} / {{ summary.total_label }} marks · {{ summary.percent }}% overall</p>
+          {% else %}
+          <p class="summary-line">No marks yet.</p>
+          {% endif %}
+        </div>
+        {% if summary %}
+        <div class="stamp {{ summary.tone }}" aria-hidden="true">
+          <strong>{{ summary.percent }}%</strong>
+          <span>overall</span>
+        </div>
+        {% endif %}
+      </div>
+      <p class="fine">Percentage is marks obtained divided by the marks available for that question.</p>
+      {% if rows %}
+      <ol class="entries">
+        {% for row in rows %}
+        <li class="entry">
+          <div class="entry-top">
+            <p class="num">{{ "%02d"|format(loop.index) }}</p>
+            <h3 class="question">{{ row.question }}</h3>
+            <p class="fraction"><strong>{{ row.obtained_label }}</strong> <span>/ {{ row.total_label }}</span></p>
+          </div>
+          {% if row.percent is not none %}
+          <div class="meter">
+            <progress class="{{ row.tone }}" max="100" value="{{ row.percent }}" aria-label="Question {{ loop.index }}: {{ row.percent }} percent"></progress>
+            <p class="percent {{ row.tone }}">{{ row.percent }}%</p>
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <div class="empty">
+        <p>Nothing logged yet.</p>
+        <p>Add one question from a past paper, a mock, or a test you just sat.</p>
+      </div>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Built by <a href="{{ author_url }}">Ryan Editraj</a>. <a href="{{ repo_url }}">MIT licensed</a>.</p>
+    <p>A local exam review log for practice questions, mocks, and past papers.</p>
+  </footer>
+</div>
+{% endblock %}

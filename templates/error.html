@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }} · Exam Strategy Studio{% endblock %}
+{% block content %}
+<main class="wrap narrow">
+  <p class="kicker">Exam Strategy Studio</p>
+  <h1>{{ heading }}</h1>
+  <p class="dek">{{ message }}</p>
+  <p><a class="back" href="{{ url_for('home') }}">Back to the score sheet</a></p>
+</main>
+{% endblock %}

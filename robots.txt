@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# The in-app score sheet sends noindex unless ALLOW_INDEXING=1.
+# When you deploy, set SITE_URL and the app will publish a Sitemap line
+# for that origin.
