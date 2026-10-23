@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Exam Strategy Studio — local exam review and score sheet{% endblock %}</title>
+  <meta name="description" content="Log practice questions, marks obtained, and total marks in a private score sheet. Exam Strategy Studio is a local exam review log that stays on your computer.">
+  <meta name="keywords" content="exam strategy, exam review, practice questions, marks obtained, score sheet, past paper, mock exam, revision log, local-first study tool">
+  <meta name="author" content="Ryan Editraj">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#efe6d4">
+  {% if allow_indexing %}
+  <meta name="robots" content="index, follow">
+  {% else %}
+  <meta name="robots" content="noindex, nofollow">
+  {% endif %}
+  {% if site_url %}
+  <link rel="canonical" href="{{ site_url }}/">
+  {% endif %}
+  <link rel="author" href="{{ author_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Exam Strategy Studio">
+  <meta property="og:title" content="Exam Strategy Studio — local exam review and score sheet">
+  <meta property="og:description" content="Log practice questions, marks obtained, and total marks in a private score sheet that stays on your computer.">
+  <meta property="og:url" content="{{ public_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:locale" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Exam Strategy Studio — local exam review and score sheet">
+  <meta name="twitter:description" content="Log practice questions, marks obtained, and total marks in a private score sheet that stays on your computer.">
+  <meta name="twitter:image" content="{{ og_image }}">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='studio.css') }}">
+  <script type="application/ld+json" nonce="{{ csp_nonce }}">{{ structured_data | tojson }}</script>
+</head>
+<body>
+  <a class="skip" href="#score-sheet">Skip to the score sheet</a>
+  {% block content %}{% endblock %}
+</body>
+</html>
